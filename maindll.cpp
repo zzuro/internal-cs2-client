@@ -2,7 +2,7 @@
 
 #include <windows.h>
 #include <iostream>
-#include "hook/hook.h"
+#include "src/hook/hook.h"
 
 BOOL WINAPI MainThread(HMODULE hModule) {
 
@@ -11,15 +11,7 @@ BOOL WINAPI MainThread(HMODULE hModule) {
     freopen_s(&file, "CONOUT$", "w", stdout);
     std::cout << "DLL injected!" << std::endl;
 
-    bool init_hook = false;
-	do
-	{
-		if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success)
-		{
-			kiero::bind(8, (void**)& hook::oPresent, hook::hkPresent);
-			init_hook = true;
-		}
-	} while (!init_hook);
+    hook::Init();
 
     while (!GetAsyncKeyState(VK_END))
     {
@@ -28,7 +20,7 @@ BOOL WINAPI MainThread(HMODULE hModule) {
 
 UNLOAD:
 
-    kiero::shutdown();
+    hook::Shutdown();
     if (file)
         fclose(file);
     FreeConsole();

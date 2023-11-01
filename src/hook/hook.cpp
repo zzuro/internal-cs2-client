@@ -72,3 +72,22 @@ HRESULT __stdcall hook::hkPresent(IDXGISwapChain *pSwapChain, UINT SyncInterval,
 
 	return oPresent(pSwapChain, SyncInterval, Flags);
 }
+
+
+void hook::Init()
+{
+	bool init_hook = false;
+	do
+	{
+		if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success)
+		{
+			kiero::bind(8, (void**)& hook::oPresent, hook::hkPresent);
+			init_hook = true;
+		}
+	} while (!init_hook);
+}
+
+void hook::Shutdown()
+{
+	kiero::shutdown();
+}
