@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <span>
 #include <string>
+#include <Windows.h>
 
 class CModule {
    public:

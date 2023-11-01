@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <iostream>
 #include "src/hook/hook.h"
+#include "src/memory/mem.h"
 
 BOOL WINAPI MainThread(HMODULE hModule) {
 
@@ -12,6 +13,7 @@ BOOL WINAPI MainThread(HMODULE hModule) {
     std::cout << "DLL injected!" << std::endl;
 
     hook::Init();
+
 
     while (!GetAsyncKeyState(VK_END))
     {

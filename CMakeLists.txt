@@ -14,6 +14,7 @@ find_library(D3D11_LIBRARY
             NAMES d3d11.lib dxgi.lib d3dcompiler.lib
             PATHS "C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Lib\\x64")
 
+
 add_library(${PROJECT_NAME} SHARED maindll.cpp ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME} ${D3D11_LIBRARY})
