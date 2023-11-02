@@ -1,6 +1,7 @@
 #include "module.h"
 #include "../pointer/pointer.h"
-#include "../fnv/fnv.h"
+#include "../utils/fnv.h"
+
 
 CModule::CModule(const char* name) {
     m_Name = name;
@@ -32,8 +33,22 @@ uintptr_t CModule::GetInterface(const char* version) {
         if (!pCreateInterface.IsValid()) {
             return rv;
         }
-        
-        rv = pCreateInterface.Call<uintptr_t*>(version, nullptr);
+    
+       
+        struct InterfaceReg {
+            std::add_pointer_t<uintptr_t()> m_CreateFn;
+            const char* m_pName;
+            InterfaceReg* m_pNext;  // For the global list.
+        };
+
+        InterfaceReg* s_pInterfaceRegs =  pCreateInterface.Absolute(3, 0).Dereference(1).Get<InterfaceReg*>();
+        uint32_t versionHash = fnv::Hash(version);
+        for (; s_pInterfaceRegs; s_pInterfaceRegs = s_pInterfaceRegs->m_pNext) {
+            if (fnv::Hash(s_pInterfaceRegs->m_pName) == versionHash) {
+                rv = s_pInterfaceRegs->m_CreateFn();
+                break;
+            }
+        }
     }
 
     return rv;

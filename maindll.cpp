@@ -13,7 +13,7 @@ BOOL WINAPI MainThread(HMODULE hModule) {
     std::cout << "DLL injected!" << std::endl;
 
     hook::Init();
-
+    mem::Initialize();
 
     while (!GetAsyncKeyState(VK_END))
     {

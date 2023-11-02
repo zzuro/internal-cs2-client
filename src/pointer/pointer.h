@@ -35,7 +35,7 @@ class CPointer {
         }
 
         return std::invoke_result_t<T, Args...>{};
-    }
+    };
 
     CPointer GetFieldPtr(int offset) const;
 
