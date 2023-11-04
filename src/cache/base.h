@@ -1,0 +1,33 @@
+#pragma once
+
+#include "../../sdk/types/handle.h"
+#include "../math/types/bbox.h"
+
+class CCachedBaseEntity {
+   public:
+    enum class Type { GENERIC = 0, PLAYER, GUN, HEN, HOSTAGE };
+
+    CCachedBaseEntity() {}
+    CCachedBaseEntity(const CCachedBaseEntity&) = delete;
+    CCachedBaseEntity& operator=(const CCachedBaseEntity&) = delete;
+
+    // Gets rid of the need to dynamic_cast.
+    virtual Type GetType() const { return Type::GENERIC; }
+
+    template <typename T = C_BaseEntity>
+    auto Get() const {
+        return CHandle<T>(m_Handle).Get();
+    }
+
+    auto GetHandle() const { return m_Handle; }
+    auto SetHandle(CBaseHandle handle) { m_Handle = handle; }
+
+    auto GetIndex() const { return m_Handle.GetEntryIndex(); }
+    auto GetSerial() const { return m_Handle.GetSerialNumber(); }
+
+    
+   protected:
+
+    CBaseHandle m_Handle;
+    BBox_t m_BBox;
+};

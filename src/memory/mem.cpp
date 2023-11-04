@@ -1,6 +1,7 @@
 #include "mem.h"
 #include "../utils/fnv.h"
 #include "../sigscan/sigscan.h"
+#include <iostream>
 
 
 std::unordered_map<uint32_t, ModulePtr_t> mem::m_CachedModules;
@@ -39,3 +40,18 @@ ModulePtr_t&  mem::GetModule(const char* libName) {
     static ModulePtr_t null{};
     return null;
 }
+
+CPointer mem::GetInterface(const char* libName, const char* version) {
+    CPointer rv = 0;
+
+    auto& library = mem::GetModule(libName);
+    if (!library) {
+        return rv;
+    }
+
+    rv = library->GetInterface(version);
+    std::cout << "[interface] " << libName << " -> " << version << " -> " << rv.Get<void*>() << std::endl;
+
+    return rv;
+}
+

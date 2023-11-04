@@ -1,4 +1,5 @@
 #include "hook.h"
+#include "../cache/cache.h"
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -73,7 +74,6 @@ HRESULT __stdcall hook::hkPresent(IDXGISwapChain *pSwapChain, UINT SyncInterval,
 	return oPresent(pSwapChain, SyncInterval, Flags);
 }
 
-
 void hook::Init()
 {
 	bool init_hook = false;
@@ -81,7 +81,7 @@ void hook::Init()
 	{
 		if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success)
 		{
-			kiero::bind(8, (void**)& hook::oPresent, hook::hkPresent);
+			kiero::bind(8, (void **)&hook::oPresent, hook::hkPresent);
 			init_hook = true;
 		}
 	} while (!init_hook);
@@ -91,3 +91,13 @@ void hook::Shutdown()
 {
 	kiero::shutdown();
 }
+
+void *hook::oOnAddEntity = nullptr;
+void *hook::hkOnAddEntity(void *rcx, CEntityInstance *inst, CBaseHandle handle)
+{
+	CMatchCache::AddEntity(inst, handle);
+	return CallOriginal<void *>(oOnAddEntity, rcx, inst, handle);
+}
+
+bool hkMouseInputEnabled(void *rcx);
+void hkGetMatricesForView(void *rcx, void *view, VMatrix *pWorldToView, VMatrix *pViewToProjection, VMatrix *pWorldToProjection, VMatrix *pWorldToPixels);
