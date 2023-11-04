@@ -14,7 +14,7 @@ BOOL WINAPI MainThread(HMODULE hModule) {
 
     hook::Init();
     mem::Initialize();
-
+    
     while (!GetAsyncKeyState(VK_END))
     {
        

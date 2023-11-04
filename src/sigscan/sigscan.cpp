@@ -1,3 +1,4 @@
+#include <iostream>
 #include "sigscan.h"
 #include "../memory/mem.h"
 
@@ -23,7 +24,7 @@ void CSigScan::FindSignature() {
             if (data.m_Procedure) {
                 data.m_Procedure(m_Value);
             }
-
+            std::cout << "[signature] {" << m_Name << "}: " << std::hex << m_Value.Get<void*>() << std::endl;
             return;
         }
     }
