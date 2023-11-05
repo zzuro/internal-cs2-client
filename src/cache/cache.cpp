@@ -12,6 +12,11 @@
 std::mutex CMatchCache::m_EntitiesLock;
 std::unordered_map<int, CMatchCache::CachedEntityPtr> CMatchCache::m_CachedEntities;
 
+
+
+const auto& CMatchCache::GetCachedEntities() { return m_CachedEntities; }
+auto& CMatchCache::GetLock() { return m_EntitiesLock; }
+
 void CMatchCache::Initialize() {
     
     int highestIdx = CGameEntitySystem::GetHighestEntityIndex();

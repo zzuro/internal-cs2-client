@@ -12,16 +12,31 @@ BOOL WINAPI MainThread(HMODULE hModule) {
     freopen_s(&file, "CONOUT$", "w", stdout);
     std::cout << "DLL injected!" << std::endl;
 
-    hook::Init();
-    mem::Initialize();
+    try
+    {
+        mem::Initialize();
+        hook::Init();
+    }
+    catch(const std::exception& e)
+    {
+        MessageBeep(MB_ICONERROR);
+        MessageBox(
+            0,
+            e.what(),
+            "Failed to start ImGUI!",
+            MB_OK | MB_ICONEXCLAMATION
+        );
+
+        goto UNLOAD;
+    }
     
+   
     while (!GetAsyncKeyState(VK_END))
     {
        
     }
 
 UNLOAD:
-
     hook::Shutdown();
     if (file)
         fclose(file);

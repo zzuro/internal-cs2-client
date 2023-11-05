@@ -29,7 +29,8 @@ The client incorporates the following cheats:
 Utilize ManualMapping for injecting the client and simply press the **INSERT** key to open the Menu. To remove the client, press the **END** key.
 
 ## Dependencies
-- [kiero](https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook/tree/master) - hooking
+- [kiero](https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook/tree/master) - directX11 hook
+- [minhook](https://github.com/TsudaKageyu/minhook/tree/master) - function hooking
 - [imgui](https://github.com/ocornut/imgui) - gui
 - [STB](https://github.com/cristeigabriel/STB) - signatures
 - [CS2-SDK](https://github.com/bruhmoment21/cs2-sdk) - sdk

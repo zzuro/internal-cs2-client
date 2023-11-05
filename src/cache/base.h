@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../sdk/types/handle.h"
 #include "../math/types/bbox.h"
+#include "../../sdk/types/handle.h"
 
 class CCachedBaseEntity {
    public:

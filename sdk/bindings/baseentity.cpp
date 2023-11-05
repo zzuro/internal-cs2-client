@@ -1,5 +1,5 @@
-#include "baseentity.h"
 #include "../../src/math/types/bbox.h"
+#include "baseentity.h"
 #include "../../src/math/math.h"
 
 #include "../../src/signatures/sig.h"

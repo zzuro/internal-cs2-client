@@ -46,6 +46,7 @@ CPointer mem::GetInterface(const char* libName, const char* version) {
 
     auto& library = mem::GetModule(libName);
     if (!library) {
+        std::cout << "[interface] " << libName << " -> " << version << " -> " << "failed to get module" << std::endl;
         return rv;
     }
 

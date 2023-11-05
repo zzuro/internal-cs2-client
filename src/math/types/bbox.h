@@ -8,8 +8,9 @@ struct BBox_t {
     BBox_t() { Invalidate(); }
 
     void Invalidate() {
-        static constexpr auto MAX_FLOAT = std::numeric_limits<float>::max();
-
+        
+        static constexpr auto MAX_FLOAT = (std::numeric_limits<float>::max)();
+      
         m_Mins.x = m_Mins.y = MAX_FLOAT;
         m_Maxs.x = m_Maxs.y = -MAX_FLOAT;
 

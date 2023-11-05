@@ -8,6 +8,8 @@
 #include "../../imgui/imgui_impl_dx11.h"
 #include "../../sdk/bindings/baseentity.h"
 #include "../math/types/vmatrix.h"
+#include "../virtual/virtual.h"
+#include <iostream>
 
 typedef HRESULT(__stdcall* Present) (IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
 typedef LRESULT(CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM);
@@ -34,6 +36,9 @@ namespace hook{
         return CPointer(m_Original).Call<T (*)(Args...)>(std::forward<Args>(args)...);
     }
 
+    bool VirtualFunction(CPointer ptr, size_t index, const char *name, void *fn, void **orig);
+    bool Function(CPointer ptr, const char* name, void *fn, void **orig);
+	
 
     LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
     HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
@@ -41,7 +46,14 @@ namespace hook{
     
     extern void* oOnAddEntity;
     void* hkOnAddEntity(void* rcx, CEntityInstance* inst, CBaseHandle handle);
+
+    extern void* oOnRemoveEntity;
+    void* hkOnRemoveEntity(void* rcx, CEntityInstance* inst, CBaseHandle handle);
+
+    extern void* oMouseInputEnabled;
     bool hkMouseInputEnabled(void* rcx);
+
+    extern void* oGetMatricesForView;
     void hkGetMatricesForView(void* rcx, void* view, VMatrix* pWorldToView, VMatrix* pViewToProjection, VMatrix* pWorldToProjection, VMatrix* pWorldToPixels);
 
    
