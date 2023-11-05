@@ -4,6 +4,7 @@
 #include <iostream>
 #include "src/hook/hook.h"
 #include "src/memory/mem.h"
+#include "cheats/vis/vis.h"
 
 BOOL WINAPI MainThread(HMODULE hModule) {
 
@@ -33,7 +34,7 @@ BOOL WINAPI MainThread(HMODULE hModule) {
    
     while (!GetAsyncKeyState(VK_END))
     {
-       
+       vis::BoxESP();
     }
 
 UNLOAD:

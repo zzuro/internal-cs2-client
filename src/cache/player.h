@@ -12,6 +12,10 @@ class CCachedPlayer : public CCachedBaseEntity {
 
     auto Get() const { return CCachedBaseEntity::Get<CCSPlayerController>(); }
 
+    bool CanDoESP() override;
+    void DrawESP() override;
+    void CalculateDrawInfo() override;
+
     Team GetTeam();
     bool IsEnemyWithTeam(Team team);
     bool IsLocalPlayer();

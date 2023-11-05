@@ -25,8 +25,15 @@ class CCachedBaseEntity {
     auto GetIndex() const { return m_Handle.GetEntryIndex(); }
     auto GetSerial() const { return m_Handle.GetSerialNumber(); }
 
+
+    virtual bool CanDoESP();
+    virtual void DrawESP();
+    virtual void InvalidateDrawInfo();
+    virtual void CalculateDrawInfo();
+
     
    protected:
+    void DrawBoundingBox(ImU32 color);
 
     CBaseHandle m_Handle;
     BBox_t m_BBox;

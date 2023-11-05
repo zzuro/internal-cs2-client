@@ -14,8 +14,8 @@ std::unordered_map<int, CMatchCache::CachedEntityPtr> CMatchCache::m_CachedEntit
 
 
 
-const auto& CMatchCache::GetCachedEntities() { return m_CachedEntities; }
-auto& CMatchCache::GetLock() { return m_EntitiesLock; }
+std::unordered_map<int, CMatchCache::CachedEntityPtr>& CMatchCache::GetCachedEntities() { return m_CachedEntities; }
+std::mutex& CMatchCache::GetLock() { return m_EntitiesLock; }
 
 void CMatchCache::Initialize() {
     

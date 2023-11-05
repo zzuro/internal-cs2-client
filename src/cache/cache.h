@@ -12,8 +12,8 @@ namespace CMatchCache {
    
     using CachedEntityPtr = std::unique_ptr<CCachedBaseEntity>;
 
-    const auto& GetCachedEntities();
-    auto& GetLock();
+    std::unordered_map<int, CMatchCache::CachedEntityPtr>& GetCachedEntities();
+    std::mutex& GetLock();
 
     void Initialize();
 

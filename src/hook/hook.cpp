@@ -8,6 +8,8 @@
 #include "../../sdk/interfaces/source2client.h"
 #include "../cache/cache.h"
 #include <iostream>
+#include "../../cheats/vis/vis.h"
+#include "../gui/gui.h"
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -31,8 +33,6 @@ void hook::InitImGui()
 LRESULT __stdcall hook::WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 
-	if (GetAsyncKeyState(VK_INSERT) & 1)
-		open = !open;
 
 	if (true && ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
 		return true;
@@ -98,21 +98,16 @@ HRESULT __stdcall hook::hkPresent(IDXGISwapChain *pSwapChain, UINT SyncInterval,
 		else
 			return oPresent(pSwapChain, SyncInterval, Flags);
 	}
-	if (open)
-	{
-		ImGui_ImplDX11_NewFrame();
-		ImGui_ImplWin32_NewFrame();
-		ImGui::NewFrame();
-
-		ImGui::SetWindowSize({800, 600});
-		ImGui::Begin("Menu", &open, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
-		ImGui::End();
-
-		ImGui::Render();
-
-		pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
-		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-	}
+	
+	
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+	gui::render();
+	ImGui::Render();
+	pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	
 
 	return oPresent(pSwapChain, SyncInterval, Flags);
 }
@@ -186,6 +181,7 @@ void hook::Init()
 
 void hook::Shutdown()
 {
+	gui::shotdown();
 	MH_DisableHook(MH_ALL_HOOKS);
 	MH_RemoveHook(MH_ALL_HOOKS);
 	MH_Uninitialize();

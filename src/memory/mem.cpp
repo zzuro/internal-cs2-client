@@ -56,3 +56,17 @@ CPointer mem::GetInterface(const char* libName, const char* version) {
     return rv;
 }
 
+
+CPointer mem::GetProcAddress(const char* libName, const char* procName) {
+    CPointer rv = 0;
+
+    auto& library = mem::GetModule(libName);
+    if (!library) {
+        std::cout << "[export] " << libName << " -> " << procName << " -> " << "failed to get module" << std::endl;
+        return rv;
+    }
+
+    rv = library->GetProcAddress(procName);
+    std::cout << "[export] " << libName << " -> " << procName << " -> " << rv.Get<void*>() << std::endl;
+    return rv;
+}
