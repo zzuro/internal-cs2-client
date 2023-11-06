@@ -104,6 +104,7 @@ HRESULT __stdcall hook::hkPresent(IDXGISwapChain *pSwapChain, UINT SyncInterval,
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 	vis::drawList = ImGui::GetBackgroundDrawList();
+	gui::watermark();
 	gui::render();
 	vis::BoxESP();
 	vis::NoFlash();
