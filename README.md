@@ -20,7 +20,10 @@ The client incorporates the following cheats:
 *not yet implemented*
 
 ### Visuals
-*not yet implemented*
+- [x] BoxESP
+- [x] WeaponESP
+- [x] AntiFlash
+
 
 ### Misc
 *not yet implemented*

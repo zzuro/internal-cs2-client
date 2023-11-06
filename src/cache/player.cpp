@@ -9,7 +9,23 @@
 
 #include "../../imgui/imgui.h"
 #include "../../imgui/imgui_internal.h"
+#include "../../cheats/vis/vis.h"
 
+
+void CCachedPlayer::AntiFlash()
+{
+    
+    CCSPlayerController* controller = Get();
+    if (!controller || !controller->m_bPawnIsAlive()) {
+        return;
+    }
+
+    C_CSPlayerPawnBase* pawn = controller->m_hPawn().Get();
+    
+    if(pawn->m_flFlashBangTime() > 0.0f){
+        pawn->m_flFlashBangTime() = 0.0f;
+    }
+}
 
 bool CCachedPlayer::CanDoESP() {
     CCSPlayerController* controller = Get();
@@ -31,7 +47,7 @@ void CCachedPlayer::DrawESP() {
         return InvalidateDrawInfo();
     }
 
-    auto drawList = ImGui::GetBackgroundDrawList();
+    auto drawList = vis::drawList;
 
     const ImVec2& min = m_BBox.m_Mins;
     const ImVec2& max = m_BBox.m_Maxs;

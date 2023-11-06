@@ -3,6 +3,8 @@
 #include "../../sdk/bindings/baseentity.h"
 #include "../../imgui/imgui.h"
 #include "../../imgui/imgui_internal.h"
+#include "../../cheats/vis/vis.h"
+
 
 bool CCachedBaseEntity::CanDoESP() { return Get() != nullptr; }
 void CCachedBaseEntity::InvalidateDrawInfo() { m_BBox.Invalidate(); }
@@ -14,14 +16,14 @@ void CCachedBaseEntity::DrawESP() {
 void CCachedBaseEntity::DrawBoundingBox(ImU32 color) {
     static constexpr auto outlineColor = IM_COL32(0, 0, 0, 255);
 
-    auto drawList = ImGui::GetBackgroundDrawList();
+    auto drawList = vis::drawList;
 
     const ImVec2& min = m_BBox.m_Mins;
     const ImVec2& max = m_BBox.m_Maxs;
+
     drawList->AddRect(min - ImVec2{1.f, 1.f}, max + ImVec2{1.f, 1.f}, outlineColor);
     drawList->AddRect(min + ImVec2{1.f, 1.f}, max - ImVec2{1.f, 1.f}, outlineColor);
-    drawList->AddRect(min, max, color);
-    
+    drawList->AddRect(min, max, color);    
 }
 
 void CCachedBaseEntity::CalculateDrawInfo() {

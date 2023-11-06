@@ -66,5 +66,7 @@ void gui::renderGUI(){
 	ImGui::SetWindowSize({800, 600});
 	ImGui::Begin("Menu", &hook::open, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 	ImGui::Checkbox("BoxESP", &vis::DrawBoxESP);
+    ImGui::Checkbox("WeaponESP", &vis::WeaponESP);
+    ImGui::Checkbox("NoFlash", &vis::EnableNoFlash);
 	ImGui::End();
 }

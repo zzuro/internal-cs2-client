@@ -103,7 +103,10 @@ HRESULT __stdcall hook::hkPresent(IDXGISwapChain *pSwapChain, UINT SyncInterval,
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
+	vis::drawList = ImGui::GetBackgroundDrawList();
 	gui::render();
+	vis::BoxESP();
+	vis::NoFlash();
 	ImGui::Render();
 	pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
@@ -220,5 +223,6 @@ void *hook::oGetMatricesForView = nullptr;
 void hook::hkGetMatricesForView(void *rcx, void *view, VMatrix *pWorldToView, VMatrix *pViewToProjection, VMatrix *pWorldToProjection, VMatrix *pWorldToPixels)
 {
 	CallOriginal<void>(oGetMatricesForView, rcx, view, pWorldToView, pViewToProjection, pWorldToProjection, pWorldToPixels);
-	CMath::Get().UpdateViewMatrix(pWorldToView);
+	CMath::Get().UpdateViewMatrix(pWorldToProjection);
+	vis::UpdateESP();
 }
