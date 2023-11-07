@@ -4,14 +4,14 @@ CPointer CPointer::GetFieldPtr(int offset) const {
     if (IsValid()) {
         return m_Value + offset;
     }
-    
+
     static CPointer null{};
     return &null;
 }
 
 CPointer& CPointer::Offset(int offset) {
     if (IsValid()) {
-        m_Value += offset;
+        m_Value += offset;                  
     }
 
     return *this;
@@ -19,8 +19,8 @@ CPointer& CPointer::Offset(int offset) {
 
 CPointer& CPointer::Absolute(int preAbs, int postAbs) {
     if (IsValid()) {
-        Offset(preAbs);
-        m_Value = m_Value + sizeof(int) + *reinterpret_cast<int*>(m_Value);
+        Offset(preAbs);                                                             /*address + off1*/
+        m_Value = m_Value + sizeof(int) + *reinterpret_cast<int*>(m_Value);         /*address + off1 + sizeof(int) + *address*/
         Offset(postAbs);
     }
 

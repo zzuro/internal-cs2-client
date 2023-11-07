@@ -8,4 +8,12 @@ class C_CSPlayerPawnBase : public C_BaseEntity {
     bool IsObserverPawn();
 
     SCHEMA(float, m_flFlashBangTime, "C_CSPlayerPawnBase", "m_flFlashBangTime");
+    //SHOTSFIRED
+    //AimPunchCache
+    //PunchAngle
+    //enemyPos
+    //localPos
+    //viewAngles
+    //cameraPos
+    //
 };

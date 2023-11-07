@@ -2,6 +2,7 @@
 
 #include "matrix3x4.h"
 #include <cmath>
+#include <numbers>
 
 class Vector {
    public:
@@ -25,5 +26,47 @@ class Vector {
     Vector Min(const Vector& rhs) const { return Vector{std::min<float>(x, rhs.x), std::min<float>(y, rhs.y), std::min<float>(z, rhs.z)}; }
     Vector Max(const Vector& rhs) const { return Vector{std::max<float>(x, rhs.x), std::max<float>(y, rhs.y), std::max<float>(z, rhs.z)}; }
     
+    // convert angles -> vector
+	Vector ToVector()
+	{
+		return Vector{
+			std::cos(Deg2Rad(x)) * std::cos(Deg2Rad(y)),
+			std::cos(Deg2Rad(x)) * std::sin(Deg2Rad(y)),
+			-std::sin(Deg2Rad(x))
+		};
+	}
+
+	Vector ToAngle() 
+	{
+		return Vector{
+			std::atan2(-z, std::hypot(x, y)) * (180.0f / std::numbers::pi_v<float>),
+			std::atan2(y, x) * (180.0f / std::numbers::pi_v<float>),
+			0.0f
+		};
+	}
+
+	constexpr bool isZero()
+	{
+		return x == 0 && y == 0 && z == 0;
+	}
+
+
     float x, y, z;
+};
+
+constexpr float Deg2Rad(const float deg) noexcept
+{
+	return deg * (std::numbers::pi_v<float> / 180.f);
+}
+
+
+struct Vec2
+{
+	float x, y;
+};
+
+
+struct Vec4
+{
+	float x, y, z, w;
 };
