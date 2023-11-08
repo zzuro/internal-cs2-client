@@ -8,4 +8,5 @@ namespace signatures {
     extern CSigScan GetMatricesForView;
     extern CSigScan GetHitboxSet;
     extern CSigScan HitboxToWorldTransforms;
+    extern CSigScan ForceJump;
 }  

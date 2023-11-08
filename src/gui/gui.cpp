@@ -1,6 +1,7 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "gui.h"
 #include "../../cheats/vis/vis.h"
+#include "../../cheats/mov/mov.h"
 #include "../hook/hook.h"
 #include "../../sdk/interfaces/inputsystem.h"
 #include "../../sdk/sdl/sdl.h"
@@ -76,6 +77,11 @@ void gui::renderGUI()
         ImGui::Checkbox("WeaponESP", &vis::WeaponESP);
         ImGui::Checkbox("NoFlash", &vis::EnableNoFlash);
         ImGui::Checkbox("SkeletonESP", &vis::EnableSkeletonESP);
+    }
+
+    if(ImGui::BeginTabItem("Movement"))
+    {
+        ImGui::Checkbox("Bhop", &mov::EnableBhop);
     }
 
     ImGui::EndTabBar();

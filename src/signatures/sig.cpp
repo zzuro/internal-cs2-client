@@ -39,4 +39,10 @@ namespace signatures {
                                     {
                                         {SDK_SIG("E8 ? ? ? ? 45 33 F6 4C 63 E0"), [](CPointer& ptr) { ptr.Absolute(1, 0); }},
                                     });
+
+
+    CSigScan ForceJump("dwForceJump", CConstants::CLIENT_LIB,
+                            {   
+                                {SDK_SIG("48 8B 05 ? ? ? ? 48 8D 1D ? ? ? ? 48 89 45"), [](CPointer& ptr) { ptr.Offset(48); }},
+                            });
 }  
