@@ -70,6 +70,7 @@ void gui::renderGUI(){
 	ImGui::Checkbox("BoxESP", &vis::DrawBoxESP);
     ImGui::Checkbox("WeaponESP", &vis::WeaponESP);
     ImGui::Checkbox("NoFlash", &vis::EnableNoFlash);
+    ImGui::Checkbox("SkeletonESP", &vis::EnableSkeletonESP);
 	ImGui::End();
 }
 

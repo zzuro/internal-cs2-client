@@ -9,8 +9,10 @@ namespace vis
     extern bool DrawBoxESP;
     extern bool WeaponESP;
     extern bool EnableNoFlash;
+    extern bool EnableSkeletonESP;
 
     void BoxESP();
     void UpdateESP();
     void NoFlash();
+    void SkeletonESP();
 }
