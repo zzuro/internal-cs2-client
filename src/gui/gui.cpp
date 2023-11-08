@@ -23,7 +23,7 @@ void gui::shotdown()
 }
 
 void gui::render()
-{   
+{
     if (GetAsyncKeyState(VK_INSERT) & 1)
     {
         if (!ImGui::GetCurrentContext())
@@ -46,34 +46,41 @@ void gui::render()
     renderGUI();
 }
 
-void gui::renderGUI(){
+void gui::renderGUI()
+{
 
-    
-    ImGuiIO& IO = ImGui::GetIO();
+    ImGuiIO &IO = ImGui::GetIO();
     IO.ConfigFlags = ImGuiConfigFlags_NoMouseCursorChange;
 
-    if (!hook::open) {
+    if (!hook::open)
+    {
         return;
     }
 
     IO.ConfigFlags = ImGuiConfigFlags_None;
-    
+
     auto inputSystem = CInputSystem::Get();
-    if (inputSystem) {
+    if (inputSystem)
+    {
         sdl::SetRelativeMouseMode(false);
         sdl::SetWindowGrab(inputSystem->GetSDLWindow(), false);
     }
 
     ImGui::SetNextWindowPos(IO.DisplaySize / 2.f, ImGuiCond_Once, {0.5f, 0.5f});
-	ImGui::SetWindowSize({800, 600});
-	ImGui::Begin("Menu", &hook::open, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
-	ImGui::Checkbox("BoxESP", &vis::DrawBoxESP);
-    ImGui::Checkbox("WeaponESP", &vis::WeaponESP);
-    ImGui::Checkbox("NoFlash", &vis::EnableNoFlash);
-    ImGui::Checkbox("SkeletonESP", &vis::EnableSkeletonESP);
-	ImGui::End();
-}
+    ImGui::SetWindowSize({800, 600});
+    ImGui::Begin("Menu", &hook::open, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+    ImGui::BeginTabBar("tabs");
+    if (ImGui::BeginTabItem("Visuals"))
+    {
+        ImGui::Checkbox("BoxESP", &vis::DrawBoxESP);
+        ImGui::Checkbox("WeaponESP", &vis::WeaponESP);
+        ImGui::Checkbox("NoFlash", &vis::EnableNoFlash);
+        ImGui::Checkbox("SkeletonESP", &vis::EnableSkeletonESP);
+    }
 
+    ImGui::EndTabBar();
+    ImGui::End();
+}
 
 void gui::watermark()
 {
@@ -81,11 +88,11 @@ void gui::watermark()
     char framerate[128];
 
     time_t rawtime;
-    struct tm * timeinfo;
+    struct tm *timeinfo;
 
     char time_[80];
 
-    time (&rawtime);
+    time(&rawtime);
     timeinfo = localtime(&rawtime);
 
     std::time_t currentTime = std::time(nullptr);
@@ -95,7 +102,7 @@ void gui::watermark()
     oss << std::put_time(timeInfo, "%d %b %Y");
 
     std::string str_date = oss.str();
-    strftime(time_,sizeof(time_),"%H:%M:%S",timeinfo);
+    strftime(time_, sizeof(time_), "%H:%M:%S", timeinfo);
     std::string str_time(time_);
 
     snprintf(framerate, IM_ARRAYSIZE(framerate), "CS2 Client [%d]\nFPS: %d\n\n%s %s\n",
@@ -103,5 +110,4 @@ void gui::watermark()
 
     drawList->AddText({17, 9}, IM_COL32(0, 0, 0, 255), framerate);
     drawList->AddText({16, 8}, IM_COL32(27, 227, 200, 255), framerate);
-
 }
