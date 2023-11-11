@@ -27,5 +27,7 @@ void CSigScan::FindSignature() {
             std::cout << "[signature] {" << m_Name << "}: " << std::hex << m_Value.Get<void*>() << std::endl;
             return;
         }
+
+        std::cout << "[signature] {" << m_Name << "} was not found" << std::endl;
     }
 }

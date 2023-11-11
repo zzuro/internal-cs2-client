@@ -1,6 +1,5 @@
 #include "vis.h"
 #include "../../sdk/interfaces/engineclient.h"
-#include "../../sdk/bindings/skeletoninstance.h"
 #include "../../sdk/bindings/modelstate.h"
 #include "../../sdk/bindings/baseentity.h"
 #include "../../src/cache/cache.h"
@@ -112,15 +111,7 @@ void vis::SkeletonESP()
             continue;
         }
 
-        CSkeletonInstance* skeletonInstance = node->GetSkeletonInstance();
-        if (!skeletonInstance) {
-            continue;
-        }
-        
-        CModelState modelState = skeletonInstance->m_modelState();
-        CBoneData* boneArray = modelState.m_boneArray;
-
-        CBoneData Previous, Current;
+        /*CBoneData Previous, Current;
 		for (auto i : BoneJointList::List)
 		{
 			Previous.Location = Vector(0, 0, 0);
@@ -140,7 +131,7 @@ void vis::SkeletonESP()
 				}
 				Previous = Current;
 			}
-		}
+		}*/
     
     }
 }

@@ -77,11 +77,13 @@ void gui::renderGUI()
         ImGui::Checkbox("WeaponESP", &vis::WeaponESP);
         ImGui::Checkbox("NoFlash", &vis::EnableNoFlash);
         ImGui::Checkbox("SkeletonESP", &vis::EnableSkeletonESP);
+        ImGui::EndTabItem();
     }
 
     if(ImGui::BeginTabItem("Movement"))
     {
         ImGui::Checkbox("Bhop", &mov::EnableBhop);
+        ImGui::EndTabItem();
     }
 
     ImGui::EndTabBar();

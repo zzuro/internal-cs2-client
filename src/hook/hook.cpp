@@ -158,7 +158,7 @@ void hook::Init()
 	} while (!init_hook);
 
 	CMatchCache::Initialize();
-	if (hook::VirtualFunction(signatures::GetCSGOInput.GetPtrAs<void *>(), 11, "MouseInputEnabled", &hkMouseInputEnabled, (void **)&oMouseInputEnabled))
+	if (hook::VirtualFunction(signatures::GetCSGOInput.GetPtrAs<void *>(), 12, "MouseInputEnabled", &hkMouseInputEnabled, (void **)&oMouseInputEnabled))
 	{
 		throw std::runtime_error("Failed to create hook for MouseInputEnabled");
 	}
