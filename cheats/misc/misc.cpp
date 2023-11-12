@@ -1,4 +1,4 @@
-#include "mov.h"
+#include "misc.h"
 #include "../../src/cache/cache.h"
 #include "../../src/cache/player.h"
 #include "../../sdk/interfaces/engineclient.h"
@@ -9,14 +9,13 @@
 #include <iostream>
 #include <thread>
 
-#define IN_JUMP 0x2
-#define FL_ONGROUND 0x1
 
-bool mov::EnableBhop = false;
 
-void mov::Bhop()
+bool misc::EnableBhop = false;
+
+void misc::Bhop()
 {
-    if (!CEngineClient::Get()->IsInGame() || !mov::EnableBhop)
+    if (!CEngineClient::Get()->IsInGame() || !misc::EnableBhop)
     {
         return;
     }

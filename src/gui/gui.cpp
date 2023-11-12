@@ -1,7 +1,7 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "gui.h"
 #include "../../cheats/vis/vis.h"
-#include "../../cheats/mov/mov.h"
+#include "../../cheats/misc/misc.h"
 #include "../hook/hook.h"
 #include "../../sdk/interfaces/inputsystem.h"
 #include "../../sdk/sdl/sdl.h"
@@ -82,7 +82,7 @@ void gui::renderGUI()
 
     if(ImGui::BeginTabItem("Movement"))
     {
-        ImGui::Checkbox("Bhop", &mov::EnableBhop);
+        ImGui::Checkbox("Bhop", &misc::EnableBhop);
         ImGui::EndTabItem();
     }
 

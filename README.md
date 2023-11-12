@@ -16,9 +16,6 @@ The client incorporates the following cheats:
 ### Aim
 *not yet implemented*
 
-### Movement
-- [x] Bhop
-
 ### Visuals
 - [x] BoxESP
 - [x] WeaponESP
@@ -27,7 +24,7 @@ The client incorporates the following cheats:
 
 
 ### Misc
-*not yet implemented*
+- [x] Bhop
 
 ## Usage
 Utilize ManualMapping for injecting the client and simply press the **INSERT** key to open the Menu. To remove the client, press the **END** key.
