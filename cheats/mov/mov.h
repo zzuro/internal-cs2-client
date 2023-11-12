@@ -1,4 +1,5 @@
 #pragma once
+#include "../../sdk/interfaces/inputsystem.h"
 
 namespace mov
 {

@@ -12,6 +12,4 @@ class CEntityInstance {
     CBaseHandle GetRefEHandle();
 
     SCHEMA(CEntityIdentity*, m_pEntity, "CEntityInstance", "m_pEntity");
-    SCHEMA(uint32_t, m_fFlags, "CEntityInstance", "m_fFlags");
-
 };

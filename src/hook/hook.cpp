@@ -9,6 +9,7 @@
 #include "../cache/cache.h"
 #include <iostream>
 #include "../../cheats/vis/vis.h"
+#include "../../cheats/mov/mov.h"
 #include "../gui/gui.h"
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -177,11 +178,14 @@ void hook::Init()
 	{
 		throw std::runtime_error("Failed to create hook for GetMatricesForView");
 	}
-
+	
+	
 	if (MH_EnableHook(MH_ALL_HOOKS))
 	{
 		throw std::runtime_error("Unable to enable hooks");
 	}
+
+	
 }
 
 void hook::Shutdown()
@@ -228,3 +232,4 @@ void hook::hkGetMatricesForView(void *rcx, void *view, VMatrix *pWorldToView, VM
 	CMath::Get().UpdateViewMatrix(pWorldToProjection);
 	vis::UpdateESP();
 }
+

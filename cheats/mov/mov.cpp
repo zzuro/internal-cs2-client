@@ -6,6 +6,11 @@
 #include "../../sdk/bindings/playercontroller.h"
 #include "../../src/signatures/sig.h"
 #include <Windows.h>
+#include <iostream>
+#include <thread>
+
+#define IN_JUMP 0x2
+#define FL_ONGROUND 0x1
 
 bool mov::EnableBhop = false;
 
@@ -28,19 +33,14 @@ void mov::Bhop()
     }
 
     CCSPlayerController *controller = localplayer->Get();
-    if (!controller || !controller->m_bPawnIsAlive())
-    {
-        return;
-    }
+    C_CSPlayerPawnBase *pawn = controller->m_hPlayerPawn().Get();
 
-    if (GetAsyncKeyState(VK_SPACE) < 0)
+    if ((GetAsyncKeyState(VK_SPACE) < 0) && *signatures::ForceJump.GetPtrAs<ULONG64 *>() == 256)
     {
-        if (!(controller->m_fFlags() & 1))
-        {
-           *signatures::ForceJump.GetPtrAs<int*>() = 65537;
-        }else
-        {
-            *signatures::ForceJump.GetPtrAs<int*>() = 256;
-        }
+        *signatures::ForceJump.GetPtrAs<ULONG64*>() = 65537;
+    }else
+    {
+        *signatures::ForceJump.GetPtrAs<ULONG64 *>() = 256;
     }
+    
 }

@@ -7,6 +7,7 @@
 #include "../../imgui/imgui_impl_win32.h"
 #include "../../imgui/imgui_impl_dx11.h"
 #include "../../sdk/bindings/baseentity.h"
+#include "../../sdk/interfaces/inputsystem.h"
 #include "../math/types/vmatrix.h"
 #include "../virtual/virtual.h"
 #include <iostream>
@@ -56,7 +57,6 @@ namespace hook{
     extern void* oGetMatricesForView;
     void hkGetMatricesForView(void* rcx, void* view, VMatrix* pWorldToView, VMatrix* pViewToProjection, VMatrix* pWorldToProjection, VMatrix* pWorldToPixels);
 
-   
 }
 
 

@@ -1,4 +1,5 @@
 #include "pointer.h"
+#include <iostream>
 
 CPointer CPointer::GetFieldPtr(int offset) const {
     if (IsValid()) {
@@ -17,10 +18,12 @@ CPointer& CPointer::Offset(int offset) {
     return *this;
 }
 
+
+
 CPointer& CPointer::Absolute(int preAbs, int postAbs) {
     if (IsValid()) {
-        Offset(preAbs);                                                             /*address + off1*/
-        m_Value = m_Value + sizeof(int) + *reinterpret_cast<int*>(m_Value);         /*address + off1 + sizeof(int) + *address*/
+        Offset(preAbs);                                                             
+        m_Value = m_Value + sizeof(int) + *reinterpret_cast<int*>(m_Value);         
         Offset(postAbs);
     }
 

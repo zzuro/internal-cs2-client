@@ -4,6 +4,7 @@
 #include <iostream>
 #include "src/hook/hook.h"
 #include "src/memory/mem.h"
+#include "cheats/mov/mov.h"
 
 BOOL WINAPI MainThread(HMODULE hModule) {
 
@@ -31,7 +32,10 @@ BOOL WINAPI MainThread(HMODULE hModule) {
     }
     
    
-    while (!GetAsyncKeyState(VK_END));
+    while (!GetAsyncKeyState(VK_END))
+    {
+        mov::Bhop();
+    }
 
 UNLOAD:
     hook::Shutdown();

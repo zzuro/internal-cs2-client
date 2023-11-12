@@ -8,6 +8,7 @@ class C_CSPlayerPawnBase : public C_BaseEntity {
     bool IsObserverPawn();
 
     SCHEMA(float, m_flFlashBangTime, "C_CSPlayerPawnBase", "m_flFlashBangTime");
+    SCHEMA(uint32_t, m_fFlags, "C_BaseEntity", "m_fFlags");
 
     //SHOTSFIRED
     //AimPunchCache

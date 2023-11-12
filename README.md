@@ -17,12 +17,13 @@ The client incorporates the following cheats:
 *not yet implemented*
 
 ### Movement
-*not yet implemented*
+- [x] Bhop
 
 ### Visuals
 - [x] BoxESP
 - [x] WeaponESP
 - [x] AntiFlash
+- [x] SkeletonESP
 
 
 ### Misc

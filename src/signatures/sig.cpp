@@ -43,6 +43,6 @@ namespace signatures {
 
     CSigScan ForceJump("dwForceJump", CConstants::CLIENT_LIB,
                             {   
-                                {SDK_SIG("48 8B 05 ? ? ? ? 48 8D 1D ? ? ? ? 48 89 45"), [](CPointer& ptr) { ptr.Offset(48); }},
+                                {SDK_SIG("48 8B 05 ? ? ? ? 48 8D 1D ? ? ? ? 48 89 45"), [](CPointer& ptr) { ptr.Absolute(3, 0); ptr.Offset(48); }},
                             });
 }  

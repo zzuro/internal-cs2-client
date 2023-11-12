@@ -1,4 +1,5 @@
 #include "virtual.h"
+#include <iostream>
 
 CPointer vt::GetMethod(CPointer base, uint32_t index) {
     if (!base.IsValid()) {
