@@ -10,6 +10,8 @@ namespace vis
     extern bool WeaponESP;
     extern bool EnableNoFlash;
     extern bool EnableSkeletonESP;
+    extern bool EnableNames;
+    extern bool EnableHealth;
 
     void BoxESP();
     void UpdateESP();

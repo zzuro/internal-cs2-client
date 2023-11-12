@@ -75,12 +75,14 @@ void gui::renderGUI()
     {
         ImGui::Checkbox("BoxESP", &vis::DrawBoxESP);
         ImGui::Checkbox("WeaponESP", &vis::WeaponESP);
+        ImGui::Checkbox("Names", &vis::EnableNames);
+        ImGui::Checkbox("HealthBar", &vis::EnableHealth);
         ImGui::Checkbox("NoFlash", &vis::EnableNoFlash);
         ImGui::Checkbox("SkeletonESP", &vis::EnableSkeletonESP);
         ImGui::EndTabItem();
     }
 
-    if(ImGui::BeginTabItem("Movement"))
+    if(ImGui::BeginTabItem("Misc"))
     {
         ImGui::Checkbox("Bhop", &misc::EnableBhop);
         ImGui::EndTabItem();

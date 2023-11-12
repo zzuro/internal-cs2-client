@@ -15,6 +15,8 @@ bool vis::DrawBoxESP = false;
 bool vis::WeaponESP = false;
 bool vis::EnableNoFlash = false;
 bool vis::EnableSkeletonESP = false;
+bool vis::EnableHealth = false;
+bool vis::EnableNames = false;
 
 void vis::NoFlash()
 {
@@ -35,10 +37,11 @@ void vis::NoFlash()
 void vis::BoxESP()
 {
 
-    if (!CEngineClient::Get()->IsInGame() || !vis::DrawBoxESP)
+    if (!CEngineClient::Get()->IsInGame() || (!vis::DrawBoxESP && !vis::EnableHealth && !vis::EnableNames))
     {
         return;
     }
+   
 
     const std::lock_guard<std::mutex> lock(CMatchCache::GetLock());
     const auto &cachedEntities = CMatchCache::GetCachedEntities();
@@ -62,7 +65,7 @@ void vis::BoxESP()
 void vis::UpdateESP()
 {
 
-    if (!CEngineClient::Get()->IsInGame() || !vis::DrawBoxESP)
+    if (!CEngineClient::Get()->IsInGame() || (!vis::DrawBoxESP && !vis::EnableHealth && !vis::EnableNames))
     {
         return;
     }

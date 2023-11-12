@@ -3,12 +3,13 @@
 #include "../../sdk/bindings/playercontroller.h"
 #include "../../src/cache/cache.h"
 #include "../../src/cache/player.h"
+#include <Windows.h>
 
 bool aim::EnableAimBot = false;
 
 void aim::AimBot()
 {
-    if (!CEngineClient::Get()->IsInGame() || !EnableAimBot)
+    if (!CEngineClient::Get()->IsInGame() || !EnableAimBot || !GetAsyncKeyState(VK_MENU))
     {
         return;
     }
@@ -59,6 +60,8 @@ void aim::AimBot()
         {
             continue;
         }
+
+
 
 
     }

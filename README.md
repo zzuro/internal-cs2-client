@@ -21,6 +21,8 @@ The client incorporates the following cheats:
 - [x] WeaponESP
 - [x] AntiFlash
 - [x] SkeletonESP
+- [x] Names
+- [x] Healthbar
 
 
 ### Misc
