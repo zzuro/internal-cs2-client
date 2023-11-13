@@ -5,6 +5,7 @@
 #include "src/hook/hook.h"
 #include "src/memory/mem.h"
 #include "cheats/misc/misc.h"
+#include "cheats/aim/aim.h"
 
 BOOL WINAPI MainThread(HMODULE hModule) {
 
@@ -35,6 +36,7 @@ BOOL WINAPI MainThread(HMODULE hModule) {
     while (!GetAsyncKeyState(VK_END))
     {
         misc::Bhop();
+        aim::AimBot();
     }
 
 UNLOAD:

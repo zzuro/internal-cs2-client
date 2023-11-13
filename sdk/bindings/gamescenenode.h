@@ -8,4 +8,5 @@ class CGameSceneNode {
    public:
     SCHEMA(CTransform, m_nodeToWorld, "CGameSceneNode", "m_nodeToWorld");
     SCHEMA(CModelState, m_modelState, "CSkeletonInstance", "m_modelState");
+    SCHEMA(Vector, m_vecOrigin, "CGameSceneNode", "m_vecOrigin");
 };

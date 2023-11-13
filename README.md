@@ -14,7 +14,7 @@ This is an internal CS2 cheat client designed for Windows. It was developed util
 The client incorporates the following cheats:
 
 ### Aim
-*not yet implemented*
+- [x] Aimbot
 
 ### Visuals
 - [x] BoxESP

@@ -17,4 +17,6 @@ namespace vis
     void UpdateESP();
     void NoFlash();
     void SkeletonESP();
+
+    void DrawFOV();
 }

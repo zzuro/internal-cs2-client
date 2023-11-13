@@ -9,4 +9,5 @@ namespace signatures {
     extern CSigScan GetHitboxSet;
     extern CSigScan HitboxToWorldTransforms;
     extern CSigScan ForceJump;
+    extern CSigScan ViewAngles;
 }  

@@ -1,3 +1,5 @@
+#define IMGUI_DEFINE_MATH_OPERATORS
+#define M_PI 3.14159265358979323846
 #include "vis.h"
 #include "../../sdk/interfaces/engineclient.h"
 #include "../../sdk/bindings/modelstate.h"
@@ -8,6 +10,10 @@
 #include "../../src/cache/player.h"
 #include "../../src/math/math.h"
 #include <iostream>
+#include "../aim/aim.h"
+#include "../../imgui/imgui.h"
+#include "../../imgui/imgui_internal.h"
+#include <math.h>
 
 ImDrawList *vis::drawList = nullptr;
 
@@ -166,4 +172,17 @@ void vis::SkeletonESP()
             }
         }
     }
+}
+
+
+void vis::DrawFOV()
+{
+    if (!CEngineClient::Get()->IsInGame())
+    {
+        return;
+    }
+    ImVec2 screenCenter = ImGui::GetIO().DisplaySize / 2.f;
+    float Radius = tan(aim::AimFOV / 180.f * M_PI / 2.f) / tan(90 / 180.f * M_PI / 2.f) * ImGui::GetIO().DisplaySize.x;
+    
+    drawList->AddCircle(screenCenter, Radius, IM_COL32(255, 255, 255, 255), 50 , 1.f);
 }

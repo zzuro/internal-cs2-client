@@ -2,6 +2,7 @@
 #include "gui.h"
 #include "../../cheats/vis/vis.h"
 #include "../../cheats/misc/misc.h"
+#include "../../cheats/aim/aim.h"
 #include "../hook/hook.h"
 #include "../../sdk/interfaces/inputsystem.h"
 #include "../../sdk/sdl/sdl.h"
@@ -79,6 +80,12 @@ void gui::renderGUI()
         ImGui::Checkbox("HealthBar", &vis::EnableHealth);
         ImGui::Checkbox("NoFlash", &vis::EnableNoFlash);
         ImGui::Checkbox("SkeletonESP", &vis::EnableSkeletonESP);
+        ImGui::EndTabItem();
+    }
+
+    if (ImGui::BeginTabItem("Aim"))
+    {
+        ImGui::Checkbox("AimBot", &aim::EnableAimBot);
         ImGui::EndTabItem();
     }
 

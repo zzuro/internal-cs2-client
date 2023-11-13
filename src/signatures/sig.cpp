@@ -45,4 +45,9 @@ namespace signatures {
                             {   
                                 {SDK_SIG("48 8B 05 ? ? ? ? 48 8D 1D ? ? ? ? 48 89 45"), [](CPointer& ptr) { ptr.Absolute(3, 0); ptr.Offset(48); }},
                             });
+
+    CSigScan ViewAngles("dwViewAngles", CConstants::CLIENT_LIB,
+                            {   
+                                {SDK_SIG("48 8B 0D ? ? ? ? 48 8B 01 48 FF 60 30"), [](CPointer& ptr) { ptr.Absolute(3, 0); ptr.Dereference(1); ptr.Offset(17688); }},
+                            });
 }  

@@ -110,6 +110,7 @@ HRESULT __stdcall hook::hkPresent(IDXGISwapChain *pSwapChain, UINT SyncInterval,
 	vis::BoxESP();
 	vis::NoFlash();
 	vis::SkeletonESP();
+	vis::DrawFOV();
 	ImGui::Render();
 	pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
