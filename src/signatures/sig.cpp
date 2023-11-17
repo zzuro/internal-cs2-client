@@ -48,6 +48,6 @@ namespace signatures {
 
     CSigScan ViewAngles("dwViewAngles", CConstants::CLIENT_LIB,
                             {   
-                                {SDK_SIG("48 8B 0D ? ? ? ? 48 8B 01 48 FF 60 30"), [](CPointer& ptr) { ptr.Absolute(3, 0); ptr.Dereference(1); ptr.Offset(17688); }},
+                                {SDK_SIG("48 8B 0D ? ? ? ? E9 ? ? ? ? CC CC CC CC 40 55"), [](CPointer& ptr) { ptr.Absolute(3, 0); ptr.Dereference(1); ptr.Offset(24896); }},
                             });
 }  
