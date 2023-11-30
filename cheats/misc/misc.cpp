@@ -12,9 +12,9 @@
 
 
 bool misc::EnableBhop = false;
-
-void misc::Bhop()
+void misc::Bhop(CUserCmd* cmd)
 {
+
     if (!CEngineClient::Get()->IsInGame() || !misc::EnableBhop)
     {
         return;
@@ -33,13 +33,12 @@ void misc::Bhop()
 
     CCSPlayerController *controller = localplayer->Get();
     C_CSPlayerPawnBase *pawn = controller->m_hPlayerPawn().Get();
-
-    if ((GetAsyncKeyState(VK_SPACE) < 0) && *signatures::ForceJump.GetPtrAs<ULONG64 *>() == 256)
+    
+    if (GetAsyncKeyState(VK_SPACE) && *signatures::ForceJump.GetPtrAs<ULONG64 *>() == 256)
     {
         *signatures::ForceJump.GetPtrAs<ULONG64*>() = 65537;
-    }else
-    {
+    }else{
         *signatures::ForceJump.GetPtrAs<ULONG64 *>() = 256;
     }
     
-}
+} 

@@ -35,7 +35,6 @@ BOOL WINAPI MainThread(HMODULE hModule) {
    
     while (!GetAsyncKeyState(VK_END))
     {
-        misc::Bhop();
         aim::AimBot();
     }
 

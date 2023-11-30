@@ -57,6 +57,9 @@ namespace hook{
     extern void* oGetMatricesForView;
     void hkGetMatricesForView(void* rcx, void* view, VMatrix* pWorldToView, VMatrix* pViewToProjection, VMatrix* pWorldToProjection, VMatrix* pWorldToPixels);
 
+    extern void* oCreateMove;
+    bool hkCreateMove(CInputSystem* input, std::uint32_t a2, std::uint8_t a3);
+
 }
 
 

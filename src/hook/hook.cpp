@@ -120,7 +120,7 @@ HRESULT __stdcall hook::hkPresent(IDXGISwapChain *pSwapChain, UINT SyncInterval,
 }
 
 bool hook::VirtualFunction(CPointer ptr, size_t index, const char *name, void *fn, void **orig)
-{
+{	
 	void *rt = vt::GetMethod(ptr, index).Get<void *>();
 	std::cout << "[hook]: " << name << " -> " << std::hex << rt << std::endl;
 	if (MH_CreateHook(rt, fn, orig))
@@ -179,6 +179,11 @@ void hook::Init()
 	{
 		throw std::runtime_error("Failed to create hook for GetMatricesForView");
 	}
+
+	if(hook::VirtualFunction(signatures::GetCSGOInput.GetPtrAs<void *>(), 5, "CreateMove", &hkCreateMove, (void **)&oCreateMove))
+	{
+		throw std::runtime_error("Failed to create hook for CreateMove");
+	}
 	
 	
 	if (MH_EnableHook(MH_ALL_HOOKS))
@@ -232,5 +237,24 @@ void hook::hkGetMatricesForView(void *rcx, void *view, VMatrix *pWorldToView, VM
 	CallOriginal<void>(oGetMatricesForView, rcx, view, pWorldToView, pViewToProjection, pWorldToProjection, pWorldToPixels);
 	CMath::Get().UpdateViewMatrix(pWorldToProjection);
 	vis::UpdateESP();
+}
+
+
+void *hook::oCreateMove = nullptr;
+bool hook::hkCreateMove(CInputSystem* input, std::uint32_t a2, std::uint8_t a3)
+{
+
+	CallOriginal<bool>(oCreateMove, input, a2, a3);
+
+	CUserCmd* cmd = input->GetUserCmd();
+	if (!cmd)
+	{
+		return CallOriginal<bool>(oCreateMove, input, a2, a3);
+	}
+
+	misc::Bhop(cmd);
+
+
+	return false;
 }
 

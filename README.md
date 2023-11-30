@@ -4,11 +4,12 @@
 <img src="https://img.shields.io/badge/game-CS2-yellow" />
 <img src="https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg" />
 <img src="https://img.shields.io/badge/platform-Windows-blue" />
-<img src="https://img.shields.io/badge/detection-undetected-gree" />
 </h3>
 
 ## About
-This is an internal CS2 cheat client designed for Windows. It was developed utilizing the [cs2-sdk](https://github.com/bruhmoment21/cs2-sdk). As it is exclusively intended for Windows, it solely functions with DirectX11.
+This is an internal CS2 client designed specifically for Windows, requiring DirectX11. It was developed utilizing the [cs2-sdk](https://github.com/bruhmoment21/cs2-sdk). The client features a simple GUI and includes various cheats.
+
+![esp](img/esp.png)
 
 ## Cheats
 The client incorporates the following cheats:
@@ -26,7 +27,7 @@ The client incorporates the following cheats:
 
 
 ### Misc
-- [x] Bhop
+- [x] Bhop (temporary, must be fixed)
 
 ## Usage
 Utilize ManualMapping for injecting the client and simply press the **INSERT** key to open the Menu. To remove the client, press the **END** key.
