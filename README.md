@@ -26,9 +26,6 @@ The client incorporates the following cheats:
 - [x] Healthbar
 
 
-### Misc
-- [x] Bhop (temporary, must be fixed)
-
 ## Usage
 Utilize ManualMapping for injecting the client and simply press the **INSERT** key to open the Menu. To remove the client, press the **END** key.
 

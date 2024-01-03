@@ -7,6 +7,7 @@
 #include "cheats/misc/misc.h"
 #include "cheats/aim/aim.h"
 
+
 BOOL WINAPI MainThread(HMODULE hModule) {
 
     AllocConsole();

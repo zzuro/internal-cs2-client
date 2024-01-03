@@ -89,11 +89,11 @@ void gui::renderGUI()
         ImGui::EndTabItem();
     }
 
-    if(ImGui::BeginTabItem("Misc"))
+    /*if(ImGui::BeginTabItem("Misc"))
     {
         ImGui::Checkbox("Bhop", &misc::EnableBhop);
         ImGui::EndTabItem();
-    }
+    }*/
 
     ImGui::EndTabBar();
     ImGui::End();

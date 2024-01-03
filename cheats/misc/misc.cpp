@@ -9,12 +9,13 @@
 #include <iostream>
 #include <thread>
 
-
-
 bool misc::EnableBhop = false;
-void misc::Bhop(CUserCmd* cmd)
+void misc::Bhop(CUserCmd *cmd)
 {
 
+    static int32_t last_tick = 0;
+    static bool jumped = true;
+    
     if (!CEngineClient::Get()->IsInGame() || !misc::EnableBhop)
     {
         return;
@@ -33,12 +34,25 @@ void misc::Bhop(CUserCmd* cmd)
 
     CCSPlayerController *controller = localplayer->Get();
     C_CSPlayerPawnBase *pawn = controller->m_hPlayerPawn().Get();
-    
-    if (GetAsyncKeyState(VK_SPACE) && *signatures::ForceJump.GetPtrAs<ULONG64 *>() == 256)
+
+    //printf("ticks: %d\n", cmd->cmd.base->tick_count);
+    if(jumped && pawn->m_fFlags() & (1 << 0))
     {
-        *signatures::ForceJump.GetPtrAs<ULONG64*>() = 65537;
-    }else{
-        *signatures::ForceJump.GetPtrAs<ULONG64 *>() = 256;
+        last_tick = cmd->cmd.base->tick_count;
+        jumped = false;
     }
-    
-} 
+
+    if(last_tick + 20> cmd->cmd.base->tick_count && !jumped)
+    {
+        cmd->button_states.buttonstate1 &= ~IN_JUMP;
+        std::cout << "cancel jump" << std::endl;
+        return;
+    }
+
+    if (GetAsyncKeyState(VK_SPACE) && !(pawn->m_fFlags() & (1 << 0)))
+    {
+        jumped = true;
+        cmd->button_states.buttonstate1 &= ~IN_JUMP;
+    }
+   
+}

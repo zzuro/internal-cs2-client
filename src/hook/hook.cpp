@@ -252,9 +252,8 @@ bool hook::hkCreateMove(CInputSystem* input, std::uint32_t a2, std::uint8_t a3)
 		return CallOriginal<bool>(oCreateMove, input, a2, a3);
 	}
 
-	misc::Bhop(cmd);
 
-
+	//misc::Bhop(cmd);
 	return false;
 }
 
